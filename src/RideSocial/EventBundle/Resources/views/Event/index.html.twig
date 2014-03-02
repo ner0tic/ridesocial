@@ -1,0 +1,47 @@
+{# src/RideSocial/EventBundle/Resources/View/Event/index.html.twig #}
+{% extends '::base.html.twig' %}
+{% block content %}
+  <div id="whats-happening" class="container wrapper">
+  {% block whats_happening %}
+    <h2>what's happening?</h2>
+    <ul id="filters">
+    {% block filters %}
+      <li class="filter-item {% if filter=='today' %}active{% endif %}" id="today">today</li>
+      <li class="filter-item {% if filter=='this-week'%}active{% endif %}" id="week">this week</li>
+      <li class="filter-item {% if filter=='this-month'%}active{% endif %}" id="month">this month</li>
+      <li class="filter-item radius">
+        <ul>
+          <li class="distance">
+            <div class="edit">{{ distance}}</div>
+            <div class="label">&nbsp;miles away</div>
+          </li>
+        </ul>
+      </li>
+    {% endblock %}
+    </ul>  
+    <ul id="events">
+    {% block events %}
+      {% for event in events %}
+      <li class="event-item" id="event-{{ event.Id}}">
+      {% block event_item %}
+        <div>
+          <span class="title">{{ event.Title | capitalize }}</span>
+          <hr />
+          <span class="details">{{ event.start }}&nbsp;-&nbsp;@ {{ event.venueName }} <b>[</b><span class="driver-count">4</span><b>/</b><span class="ride-count">6</span><b>]</b></span>
+        </div>
+        <div class="gmap-locale-icon"></div>
+      {% endblock %}
+      </li>
+      {% else %}no events found.{% endfor %}
+    {% endblock %}
+    </ul>
+  {% endblock %}
+  </div> 
+{% block map %}
+  {{ google_map_container(map) }}
+{% endblock %}
+{% endblock %}
+{% block javascripts %}
+  {{ parent() }}
+  {{ google_map_js(map) }}
+{% endblock %}    

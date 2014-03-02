@@ -1,0 +1,9 @@
+{
+    "name": "ridesocial/utility-bundle",
+    "license": "MIT",
+    "type": "library",
+    "description": "utility bundle",
+    "autoload": {
+        "psr-0": { "": "src/" }
+    }
+}

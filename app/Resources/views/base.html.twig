@@ -1,0 +1,131 @@
+<!doctype html>
+
+<!--[if lt IE 7 ]> <html class="ie ie6 no-js" lang="en"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie ie7 no-js" lang="en"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie ie8 no-js" lang="en"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie ie9 no-js" lang="en"> <![endif]-->
+<!--[if gt IE 9]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<!-- the "no-js" class is for Modernizr. -->
+
+  <head id="ridesocial-daviddurost-net" data-template-set="html5-reset">
+
+	<meta charset="utf-8">
+
+	<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+	<title>{% block title %}Ride Social :: Get there together{% endblock %}</title>
+
+	<meta name="title" content="ridesocial">
+	<meta name="description" content="social ride sharing network">
+	<!-- Google will often use this as its description of your page/site. Make it good. -->
+
+	<meta name="google-site-verification" content="">
+	<!-- Speaking of Google, don't forget to set your site up: http://google.com/webmasters -->
+
+	<meta name="author" content="David Durost">
+	<meta name="Copyright" content="Copyright David Durost 2012. All Rights Reserved.">
+
+	<!-- Dublin Core Metadata : http://dublincore.org/ -->
+	<meta name="DC.title" content="RideSocial">
+	<meta name="DC.subject" content="social ride sharing network">
+	<meta name="DC.creator" content="David Durost">
+
+	<!--  Mobile Viewport Fix
+	j.mp/mobileviewport & davidbcalhoun.com/2010/viewport-metatag 
+	device-width : Occupy full width of the screen in its current orientation
+	initial-scale = 1.0 retains dimensions instead of zooming out if page height > device height
+	maximum-scale = 1.0 retains dimensions instead of zooming in if page width < device width
+	-->
+	<!-- Uncomment to use; use thoughtfully!
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+	-->
+
+	<link rel="shortcut icon" href="{{ asset('/image/favicon.ico') }}">
+	<link rel="apple-touch-icon" href="/image/apple-touch-icon.png">
+	
+	{% block stylesheets %}
+  <link rel="stylesheet" href="{{ asset('/css/reset.css') }}" />
+  <link rel="stylesheet" href="{{ asset('/css/rs.css.php') }}" />
+  {% endblock %}  
+    
+	<!-- all our JS is at the bottom of the page, except for Modernizr. -->
+	<script src="/js/libs/modernizr.rs.js"></script>
+  </head>
+  <body>
+    <header>    
+    {% block header %}
+      <nav>
+      {% block nav %}
+        <ul>
+          <li class="first-child" id="logo">
+          {% block logo %}
+              <a href="{{ path('homepage') }}"><img src="{{ asset('images/logo.png') }}" alt="ride social :: get there together!" /></a>
+          {% endblock %}
+          </li>
+<!--      
+          <li class="nav-item" id="nav-item-home">
+          {% block nav_home %}
+            <a href="{{ path('homepage') }}">home</a>
+          {% endblock %}
+          </li>
+-->
+          <li class="nav-item" id="nav-item-events">
+          {% block nav_events %}
+            <a href="{{ path('events') }}">events</a>
+          {% endblock %}
+          </li>
+          <li class="nav-item" id="nav-item-rides">
+          {% block nav_rides %}
+            <a href="{{ path('trip') }}">trips</a>
+          {% endblock %}
+          </li>
+          <li class="nav-item" id="nav-item-myrides">
+          {% block nav_myrides %}
+            <a href="{{ path('ride') }}">my&nbsp;rides</a>
+          {% endblock %}
+          </li>
+          <li class="nav-item controls" id="settings">
+          {% block nav_settings %}
+            <a href="#"><img src="{{ asset('/images/icons/settings.svg') }}" width="24px" height="24px" alt="Settings" /></a>
+          {% endblock %}
+          </li>
+          <li class="nav-item controls" id="location-wrapper">
+          {% block nav_location %}
+            <div class="user-location-wrapper">
+              <div id="user-location">
+                <div class="user-display">
+                  <div class="display-user">
+                  {% block display_user %}
+                    {% if is_granted('ROLE_USER') %}
+                    <a href="{{ path('fos_user_security_logout') }}">{{ app.user.username | capitalize }}</a>
+                    {% else %}
+                    <a href="{{ path('fos_user_security_login') }}">Guest</a>
+                    {% endif %}
+                  {% endblock %}
+                  </div>
+                </div>
+                <div class="in">in</div>
+                <div class="location-display">
+                  <div class="display-location">
+                  {% block display_location %}
+                    Margaritaville
+                  {% endblock %}  
+                  </div>
+                  {% block location_input %}
+                  <input type="text" class="location-input" />
+                  {% endblock %}
+                </div>
+              </div>
+            </div>
+          {% endblock %}
+          </li>
+        </ul>
+      {% endblock %}
+      </nav>   
+    {% endblock %}
+    </header>    
+    {% block content %}{% endblock %}
+    {% block javascripts %}{% endblock %}      
+  </body>
+</html>

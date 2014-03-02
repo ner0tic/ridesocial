@@ -1,0 +1,8 @@
+parameters:
+    ridesocial.form.type.entity_to_identifier.class: RideSocial\UtilityBundle\Form\Type\EntityToIdentifierType
+services:
+    ridesocial.form.type.entity_to_identifier: 
+        class: %ridesocial.form.type.entity_to_identifier.class%
+        arguments: ["doctrine.orm.entity_manager" ]
+        tags:
+            - { name: form.type, alias: ridesocial_entity_to_identifier }

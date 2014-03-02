@@ -1,0 +1,17 @@
+events:
+    pattern: /events
+    defaults: { _controller: RideSocialEventBundle:Event:index }   
+event_add:
+    pattern: /events/add
+    defaults: { _controller: RideSocialEventBundle:Event:add }
+event:
+    pattern: /events/{slug}
+    defaults: { _controller: RideSocialEventBundle:Event:show }
+
+trip:
+    pattern: /
+    defaults: { _controller: RideSocialEventBundle:Event:index }  
+    
+ride:
+    pattern: /
+    defaults: { _controller: RideSocialEventBundle:Event:index }

@@ -1,0 +1,43 @@
+
+services:
+################################################################################
+## Pagerfanta ##################################################################
+################################################################################
+    pagerfanta.view.default:
+        class: Pagerfanta\View\DefaultView
+        public: false
+        tags: [{ name: pagerfanta.view, alias: default }]
+
+################################################################################
+## KnP Menu ####################################################################
+################################################################################
+    ridesocial_menu.menu_builder:
+        class: RideSocial\UtilityBundle\Menu\MenuBuilder
+        arguments: ["@knp_menu.factory"]
+
+    ridesocial_menu.menu.main:
+        class: Knp\Menu\MenuItem
+        factory_service: ridesocial_menu.menu_builder
+        factory_method: createMainMenu
+        arguments: [ "@request", "@service_container" ]
+        scope: request
+        tags:
+            - { name: knp_menu.menu, alias: main }
+
+    ridesocial_menu.menu.nonauth:
+        class: Knp\Menu\MenuItem
+        factory_service: ridesocial_menu.menu_builder
+        factory_method: createNonAuthMenu
+        arguments: [ "@request" ]
+        scope: request
+        tags:
+            - { name: knp_menu.menu, alias: nonauth }
+
+    ridesocial_menu.menu.datatable_controls:
+        class: Knp\Menu\MenuItem
+        factory_service: ridesocial_menu.menu_builder
+        factory_method: createDatatableControlMenu
+        arguments: [ "@request", "@service_container" ]
+        scope: request
+        tags:
+            - { name: knp_menu.menu, alias: datatable_controls }
